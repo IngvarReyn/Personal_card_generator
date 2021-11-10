@@ -1,6 +1,5 @@
-require_relative "methods"
+require_relative "personal_card_class"
 
 puts "Вы должны ввести данные для заполнения визитной карточки"
 
-data = []
-data << get_image << get_name << get_description << get_phone << get_email
+personal_card = PersonalCard.new

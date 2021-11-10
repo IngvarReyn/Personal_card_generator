@@ -25,3 +25,13 @@ def get_description
 
   description
 end
+
+def get_phone
+  begin
+    puts "Введите номер телефона (только цифры)"
+    print ("+7")
+    phone = STDIN.gets.chomp
+  end until phone =~ /\A\d{10}\z/
+
+  "Телефон: +7 #{phone[0,3]} #{phone[3,3]}-#{phone[6,2]}-#{phone[8,2]}"
+end

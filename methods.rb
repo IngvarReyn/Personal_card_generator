@@ -1,19 +1,19 @@
 def get_name
   begin
-    puts "Введите фамилию имя и отчество"
+    puts "Введите фамилию имя и отчество:"
     name = STDIN.gets.chomp
   end until name =~ /\A(?=\A.{,100}\z) *[a-zа-яё]+ +[a-zа-яё]+ +[a-zа-яё]+ *\z/i
   # regexp не позволяет строке быть длиннее 100 символов и при этом позволяет
   # вводить лишние пробелы
 
-  name = name.scan(/[a-zа-яё]+/).map(&:capitalize).join(" ")
+  name = name.scan(/[a-zа-яё]+/i).map(&:capitalize).join(" ")
   # строка очищается от лишних пробелов, форматируется регистр
 end
 
 
 def get_description
   begin
-    puts "Опишите деятельность человека (не более 60 символов)"
+    puts "Опишите деятельность человека (не более 60 символов):"
     description = STDIN.gets.chomp
   end while description.size > 60 && description =~ /<.+>/
   # regexp проверяет наличие вредоносного кода в описании
@@ -26,9 +26,10 @@ def get_description
   description
 end
 
+
 def get_phone
   begin
-    puts "Введите номер телефона (только цифры)"
+    puts "Введите номер телефона (только цифры):"
     print ("+7")
     phone = STDIN.gets.chomp
   end until phone =~ /\A\d{10}\z/
@@ -39,7 +40,7 @@ end
 
 def get_email
   begin
-    puts "Введите адрес электронной почты"
+    puts "Введите адрес электронной почты:"
     print ("Email: ")
     email = STDIN.gets.chomp.downcase
   end until email =~ /\A(?=\A.{,100}\z)[\w\.\-]+@[a-z\d\-]+\.[a-z]{2,}\z/

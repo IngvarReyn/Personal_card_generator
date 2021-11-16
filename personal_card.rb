@@ -9,6 +9,25 @@ class PersonalCard
   end
 
 
+  def create_html_doc
+    folder_path = File.dirname(__FILE__)
+    file_path   = folder_path + "/personal_cards/pcard_#{@name}.html"
+    file        = File.new(file_path, "w:UTF-8")
+
+    file.puts("<!DOCTYPE html>\n")
+    file.puts("<html lang = \"ru\">\n")
+    file.puts("<head>\n  <meta charset=\"UTF-8\">\n" +
+      "  <link href=\"#{folder_path + "/personal_cards/style.css"}\"" +
+      " rel=\"stylesheet\" type=\"text/css\">\n</head>\n\n")
+    file.puts("<body>\n#{create_body}</body>\n")
+    file.puts("</html>")
+    file.close
+  end
+
+
+  private
+
+
   def get_image
     begin
       puts "Чтобы добавить фотографию в визитную карточку " +
@@ -69,22 +88,6 @@ class PersonalCard
     end until email =~ /\A(?=\A.{,100}\z)[\w\.\-]+@[a-z\d\-]+\.[a-z]{2,}\z/
 
     "Email: #{email}"
-  end
-
-
-  def create_html_doc
-    folder_path = File.dirname(__FILE__)
-    file_path   = folder_path + "/personal_cards/pcard_#{@name}.html"
-    file        = File.new(file_path, "w:UTF-8")
-
-    file.puts("<!DOCTYPE html>\n")
-    file.puts("<html lang = \"ru\">\n")
-    file.puts("<head>\n  <meta charset=\"UTF-8\">\n" +
-      "  <link href=\"#{folder_path + "/personal_cards/style.css"}\"" +
-      " rel=\"stylesheet\" type=\"text/css\">\n</head>\n\n")
-    file.puts("<body>\n#{create_body}</body>\n")
-    file.puts("</html>")
-    file.close
   end
 
 
